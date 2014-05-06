@@ -140,12 +140,13 @@ div#control input[type='number']{
 	margin:0 0.5em 0 0.5em;
 }
 
+/*
 div#control input#a_off,
 div#control input#t_polcor,
 div#control input#t_blrctl{
 	width:4em;
 }
-
+*/
 div#control input[type='radio']{
 	display:none;
 }

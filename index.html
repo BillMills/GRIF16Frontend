@@ -105,6 +105,133 @@
 							<input id='p_diff' type='number' step=1 value=0></input>
 							<label>units</label>
 						</li>
+						<li>
+							<label>Delay:</label>
+							<input id='p_delay' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Pole Cxn 1:</label>
+							<input id='p_polec1' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Pole Cxn 2:</label>
+							<input id='p_polec2' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Baseline Rest.:</label>
+							<input id='p_bsr' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Gain:</label>
+							<input id='p_gain' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Pileup Algo:</label>
+							<input id='p_actrl' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+					</ul>
+
+					<h3>Time Evaluation</h3>
+					<ul>
+						<li>
+							<label>CFD Delay:</label>
+							<input id='cfd_dly' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>CFD Fraction:</label>
+							<input id='cfd_frac' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+					</ul>
+
+					<h3>Waveform Readout</h3>
+					<ul>
+						<li>
+							<input id='suppressedWF' type='radio' name='wfr_supp' value='suppressed' checked></input>
+							<label for='suppressedWF'>Suppressed</label>
+							<input id='unsuppressedWF' type='radio' name='wfr_supp' value='unsuppressed'></input>
+							<label for='unsuppressedWF'>Unsuppressed</label>
+						</li>
+						<li>
+							<label>Pretrigger:</label>
+							<input id='wfr_pret' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Samples:</label>
+							<input id='wfr_smpl' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Decimation:</label>
+							<input id='wfr_dec' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Filter WF:</label>
+							<input id='enableWFfilter' type='radio' name='wfr_off' value='enabled' checked></input>
+							<label for='enableWFfilter'>Enabled</label>
+							<input id='disableWFfilter' type='radio' name='wfr_off' value='disabled'></input>
+							<label for='disableWFfilter'>Disabled</label>
+						</li>
+					</ul>
+
+					<h3>Simulation Pulse</h3>
+					<ul>
+						<li>
+							<input id='enableSim' type='radio' name='sim_ena' value='enabled' checked></input>
+							<label for='enableSim'>Enabled</label>
+							<input id='disableSim' type='radio' name='sim_ena' value='disabled'></input>
+							<label for='disableSim'>Disabled</label>
+						</li>
+						<li>
+							<label>Pulse Height:</label>
+							<input id='sim_phgt' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Risetime:</label>
+							<input id='sim_rise' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Falltime:</label>
+							<input id='sim_fall' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Rate:</label>
+							<input id='sim_rate' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Period:</label>
+							<input id='periodRand' type='radio' name='sim_rand' value='random' checked></input>
+							<label for='periodRand'>Random</label>
+							<input id='periodFix' type='radio' name='sim_rand' value='fixed'></input>
+							<label for='periodFix'>Fixed</label>
+						</li>
+					</ul>
+
+					<h3>Miscellaneous</h3>
+					<ul>
+						<li>
+							<label>Fixed Deadtime:</label>
+							<input id='fix_dead' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Detector Type:</label>
+							<input id='det_type' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
 					</ul>
 
 				</div>
