@@ -82,7 +82,7 @@ div#mainContent{
 
 div#plotTarget{
 	width: calc(100% - 22em);
-	height:60%;
+	height:80%;
 	float:left;
 }
 
@@ -92,7 +92,7 @@ div#control{
 	border-radius: 1em;
 	background-color: #333333;
 	padding:1em;
-	height: 60%;
+	height: 80%;
 	overflow: scroll;
 }
 
