@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="static/main.css"/>
+		<link rel="stylesheet" type="text/css" href="xTags/branding/xBranding.css"/>
+		<link rel="stylesheet" type="text/css" href="lib/brick-0.9.1.css"/>
+
+		<script type='text/javascript' src='lib/brick-0.9.1.js'></script>
+		<script type='text/javascript' src='lib/dygraph-1.0.1.min.js'></script>
+		<script type='text/javascript' src='xTags/branding/xBranding.js'></script>
+	</head>
+
+	<body>
+
+		<div id='wrapper'>
+			<branding-head experiment='GRIFFIN' subline='GRIF16ADC'></branding-head>
+
+			<div id='mainContent'>
+				<div id='plotTarget'></div>
+				<div id='control'>
+					<h3>ADC Control</h3>
+					<ul>
+						<li>
+							<label>DC Offset:</label>
+							<input id='a_off' type='number' step='any' value=0></input>
+							<label>mV</label>
+						</li>
+						<li>
+							<label>DC Offset:</label>
+							<input id='DCenable' type='radio' name='a_dcofst' value='enabled' checked></input>
+							<label for='DCenable'>Enabled</label>
+							<input id='DCdisable' type='radio' name='a_dcofst' value='disabled'></input>
+							<label for='DCdisable'>Disabled</label>
+						</li>
+						<li>
+							<label>Polarity:</label>
+							<input id='posPol' type='radio' name='a_pol' value='positive' checked></input>
+							<label for='posPol'>Positive</label>
+							<input id='negPol' type='radio' name='a_pol' value='negative'></input>
+							<label for='negPol'>Negative</label>
+						</li>
+						<li>
+							<label>Gain Setting:</label>
+							<input id='gainA' type='radio' name='a_fgain' value='gainA' checked></input>
+							<label for='gainA'>A</label>
+							<input id='gainB' type='radio' name='a_fgain' value='gainB'></input>
+							<label for='gainB'>B</label>
+						</li>
+					</ul>
+
+					<h3>Triggering</h3>
+					<ul>
+						<li>
+							<label>Channel:</label>
+							<input id='chanEnable' type='radio' name='t_off' value='enabled' checked></input>
+							<label for='chanEnable'>Enabled</label>
+							<input id='chanDisable' type='radio' name='t_off' value='disabled'></input>
+							<label for='chanDisable'>Disabled</label>
+						</li>
+						<li>
+							<label>Hit Threshold:</label>
+							<input id='t_hthresh' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Trig Threshold:</label>
+							<input id='t_thresh' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Differentiation:</label>
+							<input id='t_diff' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Integration:</label>
+							<input id='t_int' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Delay:</label>
+							<input id='t_delay' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Pole Cxn:</label>
+							<input id='t_polcor' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>BLR Control:</label>
+							<input id='t_blrctl' type='number' step='any' value=0></input>
+							<label>units</label>
+						</li>
+					</ul>
+
+					<h3>Pulse Height Evaluation</h3>
+					<ul>
+						<li>
+							<label>Integration:</label>
+							<input id='p_int' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+						<li>
+							<label>Differentiation:</label>
+							<input id='p_diff' type='number' step=1 value=0></input>
+							<label>units</label>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+
+			<div id='push'></div>
+		</div>
+
+		<branding-foot></branding-foot>
+
+		<script>
+			document.addEventListener('DOMComponentsLoaded', function(){
+				window.dygraph = new Dygraph(document.getElementById('plotTarget'), 'chan,count\n0,1000\n1000,1000', {
+					title: 'ADC_0',
+					xlabel: 'ADC Channel',
+					ylabel: 'Counts',
+					sigFigs: 2,
+					strokeWidth: 4,
+					yAxisLabelWidth: 75,
+					xAxisHeight: 30,
+					highlightCircleSize: 6,
+					titleHeight: 50,
+					legend: 'always',
+					colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
+				});
+			});
+		</script>
+
+	</body>
+</html>

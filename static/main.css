@@ -1,0 +1,194 @@
+/*//////////////////////////////////////
+CSS Reset///////////////////////////////
+//////////////////////////////////////*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font-family: sans-serif;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+	appearance:none;
+}
+
+/*Enforce more intuitive box-sizing, suppress selection*/
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+	-webkit-user-select:none;
+	-moz-user-select:none;
+}
+
+body {
+	min-width: 1120px;
+	background-color: #222222;
+	color: #DDDDDD;
+	height: 100%;
+	width: 100%;
+
+}
+
+/*Main content*/
+div#mainContent{
+	display:inline-block; 
+	width:100%;
+	padding: 1em;
+}
+
+div#plotTarget{
+	width:78%;
+	height:60%;
+	float:left;
+}
+
+div#control{
+	width:18%;
+	float:right;
+	border-radius: 1em;
+	background-color: #333333;
+	padding:1em;
+	height: 60%;
+	overflow: scroll;
+}
+
+/*axes and labels*/
+.dygraph-axis-label{
+	color: #999999;
+	font-size: 120%;
+}
+
+.dygraph-legend{
+	background: rgba(0,0,0,0.3) !important;
+	font-size:200% !important;
+	width: 8.5em !important;
+	left: auto !important;
+	right: 0px !important;
+	padding:0.5em;
+}
+
+.dygraph-legend span{
+	clear:both;
+}
+
+/*Plot Control*/
+ul li{
+	font-size: 120%;
+	line-height: 200%;
+	clear:both;
+	padding-top: 0.5em;
+}
+
+div#control ul{
+	margin-bottom: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+div#control input[type='number']{
+	background-color: #111111;
+	border-radius: 5px;
+	border: 0px;
+	color:#EEEEEE;
+	width: 3em;
+	padding:0.5em 0 0.5em 0.5em;
+	font-size: 120%;
+	margin:0 0.5em 0 0.5em;
+}
+
+div#control input#a_off,
+div#control input#t_polcor,
+div#control input#t_blrctl{
+	width:4em;
+}
+
+div#control input[type='radio']{
+	display:none;
+}
+
+div#control input[type='radio'] + label{
+	font-size: 100%;
+	line-height: 1.2em;
+	padding:0.5em;
+	border-radius: 5px;
+	display:inline-block;
+	background-color: #111111;
+	color: #EEEEEE;
+	border: none;
+	cursor: pointer;
+	margin-right: 2px;
+	transition:background-color 0.3s; 
+	-moz-transition:background-color 0.3s; 
+	-webkit-transition:background-color 0.3s;
+}
+
+div#control input[type='radio']:checked + label{
+	background-color: #555555;
+}
+
+/*Footer and footer-related styles////////////////////////////////////////////////////*/
+div#footer{
+    background-color: #111111;
+    text-align: center;
+    font: 120%;
+    color: #DDDDDD;
+    padding-left: calc((100% - 1120px) / 2);
+    padding-right: calc((100% - 1120px) / 2);
+    padding-bottom: 50px;
+    height: 350px
+}
+
+div#push{
+	height:350px;
+}
+
+div#wrapper{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -350px;
+}
