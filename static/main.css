@@ -81,13 +81,13 @@ div#mainContent{
 }
 
 div#plotTarget{
-	width:78%;
+	width: calc(100% - 22em);
 	height:60%;
 	float:left;
 }
 
 div#control{
-	width:18%;
+	width:20em;
 	float:right;
 	border-radius: 1em;
 	background-color: #333333;
