@@ -244,7 +244,15 @@
 
 		<script>
 			document.addEventListener('DOMComponentsLoaded', function(){
-				window.dygraph = new Dygraph(document.getElementById('plotTarget'), 'chan,count\n0,1000\n1000,1000', {
+
+				var i,
+					data = 'Chan,Counts\n';
+
+				for(i=0; i<100; i++){
+					data += i + ',' + (Math.random()*50+975) + '\n';
+				}
+				
+				window.dygraph = new Dygraph(document.getElementById('plotTarget'), data, {
 					title: 'ADC_0',
 					xlabel: 'ADC Channel',
 					ylabel: 'Counts',
@@ -255,8 +263,11 @@
 					highlightCircleSize: 6,
 					titleHeight: 50,
 					legend: 'always',
+					stepPlot: true,
+					includeZero: true,
 					colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
 				});
+				
 			});
 		</script>
 
