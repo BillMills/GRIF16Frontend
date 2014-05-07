@@ -147,11 +147,17 @@ div#control input#t_blrctl{
 	width:4em;
 }
 */
-div#control input[type='radio']{
+div#control input[type='radio'],
+div#nav input[type='radio']{
 	display:none;
 }
 
-div#control input[type='radio'] + label{
+div#nav{
+	margin-bottom: 1em;
+}
+
+div#control input[type='radio'] + label,
+div#nav input[type='radio'] + label{
 	font-size: 100%;
 	line-height: 1.2em;
 	padding:0.5em;
@@ -167,7 +173,8 @@ div#control input[type='radio'] + label{
 	-webkit-transition:background-color 0.3s;
 }
 
-div#control input[type='radio']:checked + label{
+div#control input[type='radio']:checked + label,
+div#nav input[type='radio']:checked + label{
 	background-color: #555555;
 }
 
