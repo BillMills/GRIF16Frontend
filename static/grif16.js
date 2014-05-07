@@ -22,5 +22,17 @@ function cycleTo(ADC){
 		includeZero: true,
 		colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
 	});
+};
 
+function toggleSection(id){
+	var section = document.getElementById(id)
+
+	if(section.className == 'collapse'){
+		section.className = 'expand'
+		this.innerHTML = String.fromCharCode(0x25BC) + this.innerHTML.slice(this.innerHTML.indexOf(' '));
+	}
+	else{
+		section.className = 'collapse'
+		this.innerHTML = String.fromCharCode(0x25B6) + this.innerHTML.slice(this.innerHTML.indexOf(' '));	
+	}
 }

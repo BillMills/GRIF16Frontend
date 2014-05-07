@@ -54,222 +54,236 @@
 				</div>
 				<div id='plotTarget'></div>
 				<div id='control'>
-					<h3>ADC Control</h3>
-					<ul>
-						<li>
-							<label>DC Offset:</label>
-							<input id='a_off' type='number' step='any' value=0></input>
-							<label>mV</label>
-						</li>
-						<li>
-							<label>DC Offset:</label>
-							<input id='DCenable' type='radio' name='a_dcofst' value='enabled' checked></input>
-							<label for='DCenable'>Enabled</label>
-							<input id='DCdisable' type='radio' name='a_dcofst' value='disabled'></input>
-							<label for='DCdisable'>Disabled</label>
-						</li>
-						<li>
-							<label>Polarity:</label>
-							<input id='posPol' type='radio' name='a_pol' value='positive' checked></input>
-							<label for='posPol'>Positive</label>
-							<input id='negPol' type='radio' name='a_pol' value='negative'></input>
-							<label for='negPol'>Negative</label>
-						</li>
-						<li>
-							<label>Gain Setting:</label>
-							<input id='gainA' type='radio' name='a_fgain' value='gainA' checked></input>
-							<label for='gainA'>A</label>
-							<input id='gainB' type='radio' name='a_fgain' value='gainB'></input>
-							<label for='gainB'>B</label>
-						</li>
-					</ul>
+					<div id='ADC' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "ADC")()'>&#9654 ADC Control</h3>
+						<ul>
+							<li>
+								<label>DC Offset:</label>
+								<input id='a_off' type='number' step='any' value=0></input>
+								<label>mV</label>
+							</li>
+							<li>
+								<label>DC Offset:</label>
+								<input id='DCenable' type='radio' name='a_dcofst' value='enabled' checked></input>
+								<label for='DCenable'>Enabled</label>
+								<input id='DCdisable' type='radio' name='a_dcofst' value='disabled'></input>
+								<label for='DCdisable'>Disabled</label>
+							</li>
+							<li>
+								<label>Polarity:</label>
+								<input id='posPol' type='radio' name='a_pol' value='positive' checked></input>
+								<label for='posPol'>Positive</label>
+								<input id='negPol' type='radio' name='a_pol' value='negative'></input>
+								<label for='negPol'>Negative</label>
+							</li>
+							<li>
+								<label>Gain Setting:</label>
+								<input id='gainA' type='radio' name='a_fgain' value='gainA' checked></input>
+								<label for='gainA'>A</label>
+								<input id='gainB' type='radio' name='a_fgain' value='gainB'></input>
+								<label for='gainB'>B</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Triggering</h3>
-					<ul>
-						<li>
-							<label>Channel:</label>
-							<input id='chanEnable' type='radio' name='t_off' value='enabled' checked></input>
-							<label for='chanEnable'>Enabled</label>
-							<input id='chanDisable' type='radio' name='t_off' value='disabled'></input>
-							<label for='chanDisable'>Disabled</label>
-						</li>
-						<li>
-							<label>Hit Threshold:</label>
-							<input id='t_hthresh' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Trig Threshold:</label>
-							<input id='t_thresh' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Differentiation:</label>
-							<input id='t_diff' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Integration:</label>
-							<input id='t_int' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Delay:</label>
-							<input id='t_delay' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Pole Cxn:</label>
-							<input id='t_polcor' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>BLR Control:</label>
-							<input id='t_blrctl' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-					</ul>
+					<div id='trig' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "trig")()'>&#9654 Triggering</h3>
+						<ul>
+							<li>
+								<label>Channel:</label>
+								<input id='chanEnable' type='radio' name='t_off' value='enabled' checked></input>
+								<label for='chanEnable'>Enabled</label>
+								<input id='chanDisable' type='radio' name='t_off' value='disabled'></input>
+								<label for='chanDisable'>Disabled</label>
+							</li>
+							<li>
+								<label>Hit Threshold:</label>
+								<input id='t_hthresh' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Trig Threshold:</label>
+								<input id='t_thresh' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Differentiation:</label>
+								<input id='t_diff' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Integration:</label>
+								<input id='t_int' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Delay:</label>
+								<input id='t_delay' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Pole Cxn:</label>
+								<input id='t_polcor' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>BLR Control:</label>
+								<input id='t_blrctl' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Pulse Height Evaluation</h3>
-					<ul>
-						<li>
-							<label>Integration:</label>
-							<input id='p_int' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Differentiation:</label>
-							<input id='p_diff' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Delay:</label>
-							<input id='p_delay' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Pole Cxn 1:</label>
-							<input id='p_polec1' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Pole Cxn 2:</label>
-							<input id='p_polec2' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Baseline Rest.:</label>
-							<input id='p_bsr' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Gain:</label>
-							<input id='p_gain' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Pileup Algo:</label>
-							<input id='p_actrl' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-					</ul>
+					<div id='pulseHeight' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "pulseHeight")()'>&#9654 Pulse Height Evaluation</h3>
+						<ul>
+							<li>
+								<label>Integration:</label>
+								<input id='p_int' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Differentiation:</label>
+								<input id='p_diff' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Delay:</label>
+								<input id='p_delay' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Pole Cxn 1:</label>
+								<input id='p_polec1' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Pole Cxn 2:</label>
+								<input id='p_polec2' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Baseline Rest.:</label>
+								<input id='p_bsr' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Gain:</label>
+								<input id='p_gain' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Pileup Algo:</label>
+								<input id='p_actrl' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Time Evaluation</h3>
-					<ul>
-						<li>
-							<label>CFD Delay:</label>
-							<input id='cfd_dly' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>CFD Fraction:</label>
-							<input id='cfd_frac' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-					</ul>
+					<div id='time' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "time")()'>&#9654 Time Evaluation</h3>
+						<ul>
+							<li>
+								<label>CFD Delay:</label>
+								<input id='cfd_dly' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>CFD Fraction:</label>
+								<input id='cfd_frac' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Waveform Readout</h3>
-					<ul>
-						<li>
-							<input id='suppressedWF' type='radio' name='wfr_supp' value='suppressed' checked></input>
-							<label for='suppressedWF'>Suppressed</label>
-							<input id='unsuppressedWF' type='radio' name='wfr_supp' value='unsuppressed'></input>
-							<label for='unsuppressedWF'>Unsuppressed</label>
-						</li>
-						<li>
-							<label>Pretrigger:</label>
-							<input id='wfr_pret' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Samples:</label>
-							<input id='wfr_smpl' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Decimation:</label>
-							<input id='wfr_dec' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Filter WF:</label>
-							<input id='enableWFfilter' type='radio' name='wfr_off' value='enabled' checked></input>
-							<label for='enableWFfilter'>Enabled</label>
-							<input id='disableWFfilter' type='radio' name='wfr_off' value='disabled'></input>
-							<label for='disableWFfilter'>Disabled</label>
-						</li>
-					</ul>
+					<div id='waveform' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "waveform")()'>&#9654 Waveform Readout</h3>
+						<ul>
+							<li>
+								<input id='suppressedWF' type='radio' name='wfr_supp' value='suppressed' checked></input>
+								<label for='suppressedWF'>Suppressed</label>
+								<input id='unsuppressedWF' type='radio' name='wfr_supp' value='unsuppressed'></input>
+								<label for='unsuppressedWF'>Unsuppressed</label>
+							</li>
+							<li>
+								<label>Pretrigger:</label>
+								<input id='wfr_pret' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Samples:</label>
+								<input id='wfr_smpl' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Decimation:</label>
+								<input id='wfr_dec' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Filter WF:</label>
+								<input id='enableWFfilter' type='radio' name='wfr_off' value='enabled' checked></input>
+								<label for='enableWFfilter'>Enabled</label>
+								<input id='disableWFfilter' type='radio' name='wfr_off' value='disabled'></input>
+								<label for='disableWFfilter'>Disabled</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Simulation Pulse</h3>
-					<ul>
-						<li>
-							<input id='enableSim' type='radio' name='sim_ena' value='enabled' checked></input>
-							<label for='enableSim'>Enabled</label>
-							<input id='disableSim' type='radio' name='sim_ena' value='disabled'></input>
-							<label for='disableSim'>Disabled</label>
-						</li>
-						<li>
-							<label>Pulse Height:</label>
-							<input id='sim_phgt' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Risetime:</label>
-							<input id='sim_rise' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Falltime:</label>
-							<input id='sim_fall' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Rate:</label>
-							<input id='sim_rate' type='number' step='any' value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Period:</label>
-							<input id='periodRand' type='radio' name='sim_rand' value='random' checked></input>
-							<label for='periodRand'>Random</label>
-							<input id='periodFix' type='radio' name='sim_rand' value='fixed'></input>
-							<label for='periodFix'>Fixed</label>
-						</li>
-					</ul>
+					<div id='simulation' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "simulation")()'>&#9654 Simulation Pulse</h3>
+						<ul>
+							<li>
+								<input id='enableSim' type='radio' name='sim_ena' value='enabled' checked></input>
+								<label for='enableSim'>Enabled</label>
+								<input id='disableSim' type='radio' name='sim_ena' value='disabled'></input>
+								<label for='disableSim'>Disabled</label>
+							</li>
+							<li>
+								<label>Pulse Height:</label>
+								<input id='sim_phgt' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Risetime:</label>
+								<input id='sim_rise' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Falltime:</label>
+								<input id='sim_fall' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Rate:</label>
+								<input id='sim_rate' type='number' step='any' value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Period:</label>
+								<input id='periodRand' type='radio' name='sim_rand' value='random' checked></input>
+								<label for='periodRand'>Random</label>
+								<input id='periodFix' type='radio' name='sim_rand' value='fixed'></input>
+								<label for='periodFix'>Fixed</label>
+							</li>
+						</ul>
+					</div>
 
-					<h3>Miscellaneous</h3>
-					<ul>
-						<li>
-							<label>Fixed Deadtime:</label>
-							<input id='fix_dead' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-						<li>
-							<label>Detector Type:</label>
-							<input id='det_type' type='number' step=1 value=0></input>
-							<label>units</label>
-						</li>
-					</ul>
+					<div id='misc' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "misc")()'>&#9654 Miscellaneous</h3>
+						<ul>
+							<li>
+								<label>Fixed Deadtime:</label>
+								<input id='fix_dead' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+							<li>
+								<label>Detector Type:</label>
+								<input id='det_type' type='number' step=1 value=0></input>
+								<label>units</label>
+							</li>
+						</ul>
+					</div>
 
 				</div>
 			</div>
@@ -282,28 +296,7 @@
 		<script>
 			document.addEventListener('DOMComponentsLoaded', function(){
 
-				var i,
-					data = 'Chan,Counts\n';
-
-				for(i=0; i<100; i++){
-					data += i + ',' + (Math.random()*50+975) + '\n';
-				}
-				
-				window.dygraph = new Dygraph(document.getElementById('plotTarget'), data, {
-					title: 'ADC_0',
-					xlabel: 'ADC Channel',
-					ylabel: 'Counts',
-					sigFigs: 2,
-					strokeWidth: 4,
-					yAxisLabelWidth: 75,
-					xAxisHeight: 30,
-					highlightCircleSize: 6,
-					titleHeight: 50,
-					legend: 'always',
-					stepPlot: true,
-					includeZero: true,
-					colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
-				});
+				cycleTo(0);
 				
 			});
 		</script>
