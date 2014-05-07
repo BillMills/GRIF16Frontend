@@ -17,7 +17,7 @@ function cycleTo(ADC){
 		xAxisHeight: 30,
 		highlightCircleSize: 6,
 		titleHeight: 50,
-		legend: 'always',
+		//legend: 'always',
 		stepPlot: true,
 		includeZero: true,
 		colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
