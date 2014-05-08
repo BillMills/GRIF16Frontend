@@ -21,6 +21,8 @@ function fetchADC(n){
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function(){
+    	if(this.readyState != 4) return;
+
         var response = JSON.parse(this.responseText),
         	data = response.d,
         	CSV = 'Chan,Counts\n',
