@@ -1,6 +1,6 @@
 function cycleTo(ADC){
 
-	fetchADC(ADC);	
+	window.currentADC = ADC;	
 
 };
 
@@ -17,7 +17,7 @@ function toggleSection(id){
 	}
 }
 
-function fetchADC(n){
+function fetchADC(){
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function(){
@@ -33,9 +33,13 @@ function fetchADC(n){
         	CSV += i + ',' + data[i] + '\n';
         }
 
+        //properly remove old dygraph or else memory leaks :/
+		if(window.dygraph)
+			window.dygraph.destroy();
+
         //draw dygraph
 		window.dygraph = new Dygraph(document.getElementById('plotTarget'), CSV, {
-			title: 'ADC_' + n,
+			title: 'ADC_' + window.currentADC,
 			xlabel: 'ADC Channel',
 			ylabel: 'Counts',
 			sigFigs: 2,
@@ -49,9 +53,13 @@ function fetchADC(n){
 			includeZero: true,
 			colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
 		});
-            
+        
+        //refetch
+        window.fetch = setTimeout(fetchADC.bind(null), 500);
+        //fetchADC(n)
+
     }
     //fire async
-    xmlhttp.open('GET', 'http://mscb500.triumf.ca/fifo?ch='+n);
+    xmlhttp.open('GET', 'http://mscb500.triumf.ca/fifo?ch='+window.currentADC);
     xmlhttp.send();
 }
