@@ -1,6 +1,10 @@
 function cycleTo(ADC){
 
-	window.currentADC = ADC;	
+	window.currentADC = ADC;
+	if(!window.ADCparameters)
+		fetchParameters();
+	else
+		updateParameters(window.currentADC)
 
 };
 
@@ -62,4 +66,40 @@ function fetchADC(){
     //fire async
     xmlhttp.open('GET', 'http://mscb500.triumf.ca/fifo?ch='+window.currentADC);
     xmlhttp.send();
+}
+
+//gets the parameters set for all ADCs
+function fetchParameters(){
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+    	if(this.readyState != 4) return;
+
+        window.ADCparameters = JSON.parse(this.responseText);
+        updateParameters(window.currentADC)
+
+    }
+    //fire async
+    xmlhttp.open('GET', 'http://mscb500.triumf.ca/mscb?node=2');
+    xmlhttp.send();
+}
+
+//insert the parameters from channel n into the control sidebar
+//TBD: booleans are being posted as floats, not going to touch them until we discuss why...
+function updateParameters(n){
+
+	var numberID = [	'a_off', 
+						't_hthres', 't_thres', 't_diff', 't_int', 't_delay', 't_polcor', 't_blrctl', 
+						'p_int', 'p_diff', 'p_delay', 'p_polec1', 'p_polec2', 'p_bsr', 'p_gain', 'p_pactrl',
+						'cfd_dly', 'cfd_frac',
+						'wfr_pret', 'wfr_smpl', 'wfr_dec',
+						'sim_phgt', 'sim_rise', 'sim_fall', 'sim_rate',
+						'fix_dead', 'det_type'
+		],
+		i;
+
+	//all number inputs have id == data key name
+	for(i=0; i<numberID.length; i++)
+		document.getElementById(numberID[i]).value = window.ADCparameters['vars'][n][numberID[i]]['d'];
+
 }
