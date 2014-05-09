@@ -103,3 +103,22 @@ function updateParameters(n){
 		document.getElementById(numberID[i]).value = window.ADCparameters['vars'][n][numberID[i]]['d'];
 
 }
+
+//handle global keypress events
+function keypress(event){
+	var inc, viewRequested;
+
+	if(event.keyCode == 37)
+		inc = -1;
+	else if(event.keyCode == 39)
+		inc = 1;
+	else 
+		return;
+
+	viewRequested = (window.currentADC + inc) % 16;
+	if(viewRequested == -1)
+		viewRequested = 15;
+
+	document.getElementById('swap'+viewRequested).onclick();
+	document.getElementById('swap'+viewRequested).checked = true;
+}
