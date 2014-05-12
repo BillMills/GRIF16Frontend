@@ -28,13 +28,12 @@ function fetchADC(){
     	if(this.readyState != 4) return;
 
         var response = JSON.parse(this.responseText),
-        	data = response.d,
-        	CSV = 'Chan,Counts\n',
+        	CSV = 'ns,mV\n',
         	i;
 
         //build CSV
-        for(i=0; i<data.length; i++){
-        	CSV += i + ',' + data[i] + '\n';
+        for(i=0; i<response.length; i++){
+        	CSV += i*10 + ',' + response[i]*0.1220703125 + '\n';
         }
 
         //properly remove old dygraph or else memory leaks :/
@@ -44,14 +43,15 @@ function fetchADC(){
         //draw dygraph
 		window.dygraph = new Dygraph(document.getElementById('plotTarget'), CSV, {
 			title: 'ADC_' + window.currentADC,
-			xlabel: 'ADC Channel',
-			ylabel: 'Counts',
+			xlabel: 'ns',
+			ylabel: 'mV',
 			sigFigs: 2,
 			strokeWidth: 4,
 			yAxisLabelWidth: 75,
 			xAxisHeight: 30,
 			highlightCircleSize: 6,
 			titleHeight: 50,
+			//valueRange: [-1000, 1000],
 			//legend: 'always',
 			stepPlot: true,
 			includeZero: true,
@@ -64,6 +64,7 @@ function fetchADC(){
 
     }
     //fire async
+    xmlhttp.overrideMimeType('application/json');
     xmlhttp.open('GET', 'http://mscb500.triumf.ca/fifo?ch='+window.currentADC);
     xmlhttp.send();
 }
@@ -80,6 +81,7 @@ function fetchParameters(){
 
     }
     //fire async
+    xmlhttp.overrideMimeType('application/json');
     xmlhttp.open('GET', 'http://mscb500.triumf.ca/mscb?node=2');
     xmlhttp.send();
 }
