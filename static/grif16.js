@@ -1,7 +1,30 @@
 function cycleTo(ADC){
+	var CSV = 'ns,mV,\n'
 
 	window.currentADC = ADC;
 	fetchParameters();
+
+    //properly remove old dygraph or else memory leaks :/
+	if(window.dygraph)
+		window.dygraph.destroy();
+
+    //draw dygraph
+	window.dygraph = new Dygraph(document.getElementById('plotTarget'), CSV, {
+		title: 'ADC_' + window.currentADC,
+		xlabel: 'ns',
+		ylabel: 'mV',
+		sigFigs: 2,
+		strokeWidth: 4,
+		yAxisLabelWidth: 75,
+		xAxisHeight: 30,
+		highlightCircleSize: 6,
+		titleHeight: 50,
+		//valueRange: [-1000, 1000],
+		//legend: 'always',
+		stepPlot: true,
+		includeZero: true,
+		colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
+	});
 
 };
 
@@ -89,29 +112,13 @@ function fetchADC(){
 		for(i=0; i<dv.byteLength/2; i++){
 			CSV += i*10 + ',' + dv.getInt16(2*i)*0.1220703125 + '\n';
 		}
-
-        //properly remove old dygraph or else memory leaks :/
-		if(window.dygraph)
-			window.dygraph.destroy();
-
-        //draw dygraph
-		window.dygraph = new Dygraph(document.getElementById('plotTarget'), CSV, {
-			title: 'ADC_' + window.currentADC,
-			xlabel: 'ns',
-			ylabel: 'mV',
-			sigFigs: 2,
-			strokeWidth: 4,
-			yAxisLabelWidth: 75,
-			xAxisHeight: 30,
-			highlightCircleSize: 6,
-			titleHeight: 50,
-			//valueRange: [-1000, 1000],
-			//legend: 'always',
-			stepPlot: true,
-			includeZero: true,
-			colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
-		});
         
+		if(window.dygraph){
+			window.dygraph.updateOptions({
+				"file": CSV
+			});
+		}
+
         //refetch
         //window.fetch = setTimeout(fetchADC.bind(null), 500);
         fetchADC()
