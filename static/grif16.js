@@ -137,6 +137,6 @@ function updateADC(parameter, evt){
 	,	data = this.value
 
 	
-	//console.log([url, addr, var_id, data])
+	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
 	MSCB_WriteVar( url, addr, var_id, data )
 }
