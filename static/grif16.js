@@ -130,10 +130,10 @@ function fetchADC(){
 	xmlhttp.send(null);
 }
 
-function updateADC(parameter, evt){
+function updateADC(parameter){
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2 + window.currentADC
-	,	var_id = parameter
+	,	var_id = window.ADCparameters[window.currentADC][parameter]['id']
 	,	data = this.value
 
 	
