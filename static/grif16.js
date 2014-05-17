@@ -129,3 +129,14 @@ function fetchADC(){
 	xmlhttp.responseType = "arraybuffer";
 	xmlhttp.send(null);
 }
+
+function updateADC(parameter, evt){
+	var url = 'http://mscb500.triumf.ca/mscb_rx'
+	,	addr = 2 + window.currentADC
+	,	var_id = parameter
+	,	data = this.value
+
+	
+	//console.log([url, addr, var_id, data])
+	MSCB_WriteVar( url, addr, var_id, data )
+}

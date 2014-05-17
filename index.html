@@ -8,6 +8,7 @@
 		<script type='text/javascript' src='lib/dygraph-1.0.1.min.js'></script>
 		<script type='text/javascript' src='xTags/branding/xBranding.js'></script>
 		<script type='text/javascript' src='static/grif16.js'></script>
+		<script type='text/javascript' src='static/mscb.js'></script>
 	</head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -242,7 +243,7 @@
 							</li>
 							<li>
 								<label>Pulse Height:</label>
-								<input id='sim_phgt' type='number' step='any'></input>
+								<input id='sim_phgt' type='number' step='any' onchange='updateADC.bind(this, "sim_phgt")()'></input>
 								<label>units</label>
 							</li>
 							<li>
