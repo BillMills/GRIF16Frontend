@@ -55,6 +55,7 @@
 
 				</div>
 				<div id='plotTarget'></div>
+
 				<div id='control'>
 					<div id='ADC' class='collapse'>
 						<h3 class='sectionHead' onclick='toggleSection.bind(this, "ADC")()'>&#9654 ADC Control</h3>
@@ -288,6 +289,13 @@
 					</div>
 
 				</div>
+
+				<div id='plotControl'>
+					<label>y min [mV]</label>
+					<input id='yMin' type='number' min=-4000 max=4000 value=-4000 step=1></input>
+					<label>y max [mV]</label>
+					<input id='yMax' type='number' min=-4000 max=4000 value=4000 step=1></input>
+				</div>
 			</div>
 
 			<div id='push'></div>
@@ -344,7 +352,7 @@
 				cycleTo(0);
 				fetchADC();
 
-				window.onkeypress = keypress;
+				window.onkeyup = keypress;
 
 //write test///////////////////////////////////////////////////
 

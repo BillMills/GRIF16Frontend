@@ -19,8 +19,7 @@ function cycleTo(ADC){
 		xAxisHeight: 30,
 		highlightCircleSize: 6,
 		titleHeight: 50,
-		//valueRange: [-1000, 1000],
-		//legend: 'always',
+		showLabelsOnHighlight: false,
 		stepPlot: true,
 		includeZero: true,
 		colors: ['#F1C40F', '#2ECC71', '#E74C3C', '#ECF0F1', '#1ABC9C', '#E67E22', '#9B59B6']
@@ -82,6 +81,9 @@ function updateParameters(n){
 function keypress(event){
 	var inc, viewRequested;
 
+	//bail out if we're trying to move the cursor around an input
+    if(event.target.tagName == 'INPUT') return;
+
 	if(event.keyCode == 37)
 		inc = -1;
 	else if(event.keyCode == 39)
@@ -115,7 +117,8 @@ function fetchADC(){
         
 		if(window.dygraph){
 			window.dygraph.updateOptions({
-				"file": CSV
+				"file": CSV,
+				"valueRange": [parseInt(document.getElementById('yMin').value, 10), parseInt(document.getElementById('yMax').value, 10)]
 			});
 		}
 

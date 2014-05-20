@@ -103,19 +103,14 @@ div#control{
 }
 
 .dygraph-legend{
-	background: rgba(0,0,0,0.3) !important;
-	font-size:200% !important;
-	width: 8.5em !important;
-	left: auto !important;
-	right: 0px !important;
-	padding:0.5em;
-}
-
-.dygraph-legend span{
-	clear:both;
+	display: none;
 }
 
 /*Plot Control*/
+div#plotControl{
+	clear:both;
+}
+
 ul li{
 	font-size: 120%;
 	line-height: 200%;
@@ -129,7 +124,8 @@ div#control ul{
 	border-bottom: 1px solid #EEEEEE;
 }
 
-div#control input[type='number']{
+div#control input[type='number'],
+div#plotControl input[type='number']{
 	background-color: #111111;
 	border-radius: 5px;
 	border: 0px;
@@ -138,6 +134,10 @@ div#control input[type='number']{
 	padding:0.5em 0 0.5em 0.5em;
 	font-size: 120%;
 	margin:0 0.5em 0 0.5em;
+}
+
+div#plotControl input[type='number']{
+	width:6em;
 }
 
 /*

@@ -134,7 +134,7 @@ var MSCB_CRC8_LOOKUP = [
 
 // Data better be a DataView 
 function MSCB_WriteVar( url, addr, var_id, data ) {					
-	var data_to_send = ArrayBuffer( data.byteLength + 7 );
+	var data_to_send = new ArrayBuffer( data.byteLength + 7 );
 	var dv 			 = new DataView( data_to_send );
 
 	// Make Address Request
