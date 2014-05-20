@@ -61,14 +61,14 @@
 						<ul>
 							<li>
 								<label>DC Offset:</label>
-								<input id='a_off' type='number' step='any'></input>
+								<input id='a_dcofst' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>mV</label>
 							</li>
 							<li>
 								<label>DC Offset:</label>
-								<input id='DCenable' type='radio' name='a_dcofst' value='enabled' checked></input>
+								<input id='DCenable' type='radio' name='a_off' value='enabled' checked></input>
 								<label for='DCenable'>Enabled</label>
-								<input id='DCdisable' type='radio' name='a_dcofst' value='disabled'></input>
+								<input id='DCdisable' type='radio' name='a_off' value='disabled'></input>
 								<label for='DCdisable'>Disabled</label>
 							</li>
 							<li>
@@ -100,37 +100,37 @@
 							</li>
 							<li>
 								<label>Hit Threshold:</label>
-								<input id='t_hthres' type='number' step=1></input>
+								<input id='t_hthres' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Trig Threshold:</label>
-								<input id='t_thres' type='number' step=1></input>
+								<input id='t_thres' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Differentiation:</label>
-								<input id='t_diff' type='number' step=1></input>
+								<input id='t_diff' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Integration:</label>
-								<input id='t_int' type='number' step=1></input>
+								<input id='t_int' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Delay:</label>
-								<input id='t_delay' type='number' step=1></input>
+								<input id='t_delay' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Pole Cxn:</label>
-								<input id='t_polcor' type='number' step='any'></input>
+								<input id='t_polcor' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>BLR Control:</label>
-								<input id='t_blrctl' type='number' step='any'></input>
+								<input id='t_blrctl' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 						</ul>
@@ -141,42 +141,42 @@
 						<ul>
 							<li>
 								<label>Integration:</label>
-								<input id='p_int' type='number' step=1></input>
+								<input id='p_int' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Differentiation:</label>
-								<input id='p_diff' type='number' step=1></input>
+								<input id='p_diff' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Delay:</label>
-								<input id='p_delay' type='number' step=1></input>
+								<input id='p_delay' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Pole Cxn 1:</label>
-								<input id='p_polec1' type='number' step='any'></input>
+								<input id='p_polec1' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Pole Cxn 2:</label>
-								<input id='p_polec2' type='number' step='any'></input>
+								<input id='p_polec2' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Baseline Rest.:</label>
-								<input id='p_bsr' type='number' step='any'></input>
+								<input id='p_bsr' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Gain:</label>
-								<input id='p_gain' type='number' step='any'></input>
+								<input id='p_gain' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Pileup Algo:</label>
-								<input id='p_pactrl' type='number' step=1></input>
+								<input id='p_pactrl' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 						</ul>
@@ -187,12 +187,12 @@
 						<ul>
 							<li>
 								<label>CFD Delay:</label>
-								<input id='cfd_dly' type='number' step=1></input>
+								<input id='cfd_dly' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>CFD Fraction:</label>
-								<input id='cfd_frac' type='number' step='any'></input>
+								<input id='cfd_frac' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 						</ul>
@@ -209,17 +209,17 @@
 							</li>
 							<li>
 								<label>Pretrigger:</label>
-								<input id='wfr_pret' type='number' step=1></input>
+								<input id='wfr_pret' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Samples:</label>
-								<input id='wfr_smpl' type='number' step=1></input>
+								<input id='wfr_smpl' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Decimation:</label>
-								<input id='wfr_dec' type='number' step=1></input>
+								<input id='wfr_dec' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
@@ -243,22 +243,22 @@
 							</li>
 							<li>
 								<label>Pulse Height:</label>
-								<input id='sim_phgt' type='number' step='any' onchange='updateADC.bind(this, "sim_phgt")()'></input>
+								<input id='sim_phgt' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Risetime:</label>
-								<input id='sim_rise' type='number' step='any'></input>
+								<input id='sim_rise' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Falltime:</label>
-								<input id='sim_fall' type='number' step='any'></input>
+								<input id='sim_fall' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Rate:</label>
-								<input id='sim_rate' type='number' step='any'></input>
+								<input id='sim_rate' type='number' step='any' onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
@@ -276,12 +276,12 @@
 						<ul>
 							<li>
 								<label>Fixed Deadtime:</label>
-								<input id='fix_dead' type='number' step=1></input>
+								<input id='fix_dead' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 							<li>
 								<label>Detector Type:</label>
-								<input id='det_type' type='number' step=1></input>
+								<input id='det_type' type='number' step=1 onchange='updateADC.bind(this)()'></input>
 								<label>units</label>
 							</li>
 						</ul>
@@ -298,10 +298,67 @@
 		<script>
 			document.addEventListener('DOMComponentsLoaded', function(){
 				window.ADCparameters = [];
+
+				window.typeLookup = {
+					'a_pol': 'bool',
+					'a_off': 'bool',
+					'a_fgain': 'bool',
+					'a_dcofst': 'int',
+					//'a_trim': 'int',
+					//'a_status': 'int',
+					'ch_en': 'int',
+					'ch_aa': 'int',
+					't_hthres': 'float',
+					't_thres': 'float',
+					't_diff': 'int',
+					't_int': 'int',
+					't_delay': 'int',
+					't_polcor': 'float',
+					't_blrctl': 'float',
+					't_off': 'bool',
+					'p_int': 'int',
+					'p_diff': 'int',
+					'p_delay': 'int',
+					'p_polec1': 'float',
+					'p_polec2': 'float',
+					'p_bsr': 'float',
+					'p_gain': 'float',
+					'p_pactrl': 'int',
+					'cfd_dly': 'int',
+					'cfd_frac': 'float',
+					'wfr_pret': 'int',
+					'wfr_smpl': 'int',
+					'wfr_dec': 'int',
+					'wfr_supp': 'bool',
+					'wfr_off': 'bool',
+					'sim_ena': 'bool',
+					'sim_phgt': 'float',
+					'sim_rise': 'float',
+					'sim_fall': 'float',
+					'sim_rate': 'float',
+					'sim_rand': 'bool',
+					'fix_dead': 'int',
+					'det_type': 'int'
+				}
+
 				cycleTo(0);
 				fetchADC();
 
 				window.onkeypress = keypress;
+
+//write test///////////////////////////////////////////////////
+
+	var url = 'http://mscb500.triumf.ca/mscb_rx'
+	,	addr = 2
+	,	var_id = 7
+	,	data = new DataView(new ArrayBuffer(4));
+					
+    data.setFloat32(0, 7);
+
+	
+	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
+	MSCB_WriteVar( url, addr, var_id, data )
+
 			});
 		</script>
 

@@ -62,7 +62,7 @@ function fetchParameters(){
 //TBD: booleans are being posted as floats, not going to touch them until we discuss why...
 function updateParameters(n){
 
-	var numberID = [	'a_off', 
+	var numberID = [	'a_dcofst', 
 						't_hthres', 't_thres', 't_diff', 't_int', 't_delay', 't_polcor', 't_blrctl', 
 						'p_int', 'p_diff', 'p_delay', 'p_polec1', 'p_polec2', 'p_bsr', 'p_gain', 'p_pactrl',
 						'cfd_dly', 'cfd_frac',
@@ -130,11 +130,19 @@ function fetchADC(){
 	xmlhttp.send(null);
 }
 
-function updateADC(parameter){
+function updateADC(){
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2 + window.currentADC
-	,	var_id = window.ADCparameters[window.currentADC][parameter]['id']
-	,	data = this.value
+	,	var_id = window.ADCparameters[window.currentADC][this.id]['id']
+	,	data = new DataView(new ArrayBuffer(window.ADCparameters[window.currentADC][this.id]['w']));
+					
+    //data.setFloat32(0, this.value);
+    if(window.typeLookup[this.id] == 'int')
+    	data.setInt32(0, parseInt(this.value,10) );
+    else if(window.typeLookup[this.id] == 'float')
+    	data.setFloat32(0, parseFloat(this.value) );
+    else if(window.typeLookup[this.id] == 'bool')
+    	return;//WAT how bool
 
 	
 	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
