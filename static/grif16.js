@@ -161,7 +161,7 @@ function updateADC(){
 	data = new DataView(new ArrayBuffer(window.ADCparameters[window.currentADC][var_name]['w']));
 
     if(window.typeLookup[var_name] == 'int')
-    	data.setInt32(0, parseInt(this.value,10) );
+    	data.setInt16(0, parseInt(this.value,10) );
     else if(window.typeLookup[var_name] == 'float')
     	data.setFloat32(0, parseFloat(this.value) );
     else if(window.typeLookup[var_name] == 'bool')
