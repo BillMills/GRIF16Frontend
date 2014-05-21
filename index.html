@@ -67,24 +67,24 @@
 							</li>
 							<li>
 								<label>DC Offset:</label>
-								<input id='DCenable' type='radio' name='a_off' value='enabled' checked></input>
+								<input id='DCenable' type='radio' name='a_off' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='DCenable'>Enabled</label>
-								<input id='DCdisable' type='radio' name='a_off' value='disabled'></input>
+								<input id='DCdisable' type='radio' name='a_off' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='DCdisable'>Disabled</label>
 							</li>
 							<li>
 								<label>Polarity:</label>
-								<input id='posPol' type='radio' name='a_pol' value='positive' checked></input>
+								<input id='posPol' type='radio' name='a_pol' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='posPol'>Positive</label>
-								<input id='negPol' type='radio' name='a_pol' value='negative'></input>
+								<input id='negPol' type='radio' name='a_pol' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='negPol'>Negative</label>
 							</li>
 							<li>
 								<label>Gain Setting:</label>
-								<input id='gainA' type='radio' name='a_fgain' value='gainA' checked></input>
-								<label for='gainA'>A</label>
-								<input id='gainB' type='radio' name='a_fgain' value='gainB'></input>
-								<label for='gainB'>B</label>
+								<input id='gainA' type='radio' name='a_fgain' value=true checked onchange='updateADC.bind(this)()'></input>
+								<label for='gainA'>1 V</label>
+								<input id='gainB' type='radio' name='a_fgain' value=false onchange='updateADC.bind(this)()'></input>
+								<label for='gainB'>4 V</label>
 							</li>
 						</ul>
 					</div>
@@ -94,45 +94,45 @@
 						<ul>
 							<li>
 								<label>Channel:</label>
-								<input id='chanEnable' type='radio' name='t_off' value='enabled' checked></input>
+								<input id='chanEnable' type='radio' name='t_off' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='chanEnable'>Enabled</label>
-								<input id='chanDisable' type='radio' name='t_off' value='disabled'></input>
+								<input id='chanDisable' type='radio' name='t_off' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='chanDisable'>Disabled</label>
 							</li>
 							<li>
-								<label>Hit Threshold:</label>
+								<label>Hit Thresh:</label>
 								<input id='t_hthres' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>ADC units</label>
 							</li>
 							<li>
-								<label>Trig Threshold:</label>
+								<label>Trig Thresh:</label>
 								<input id='t_thres' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>ADC units</label>
 							</li>
 							<li>
 								<label>Differentiation:</label>
 								<input id='t_diff' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Integration:</label>
 								<input id='t_int' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Delay:</label>
 								<input id='t_delay' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Pole Cxn:</label>
 								<input id='t_polcor' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>BLR Control:</label>
 								<input id='t_blrctl' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 						</ul>
 					</div>
@@ -143,42 +143,42 @@
 							<li>
 								<label>Integration:</label>
 								<input id='p_int' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Differentiation:</label>
 								<input id='p_diff' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Delay:</label>
 								<input id='p_delay' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Pole Cxn 1:</label>
 								<input id='p_polec1' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Pole Cxn 2:</label>
 								<input id='p_polec2' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Baseline Rest.:</label>
 								<input id='p_bsr' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Gain:</label>
 								<input id='p_gain' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>keV/chan</label>
 							</li>
 							<li>
 								<label>Pileup Algo:</label>
 								<input id='p_pactrl' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>bitpattern</label>
 							</li>
 						</ul>
 					</div>
@@ -189,12 +189,12 @@
 							<li>
 								<label>CFD Delay:</label>
 								<input id='cfd_dly' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>CFD Fraction:</label>
 								<input id='cfd_frac' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 						</ul>
 					</div>
@@ -203,31 +203,31 @@
 						<h3 class='sectionHead' onclick='toggleSection.bind(this, "waveform")()'>&#9654 Waveform Readout</h3>
 						<ul>
 							<li>
-								<input id='suppressedWF' type='radio' name='wfr_supp' value='suppressed' checked></input>
+								<input id='suppressedWF' type='radio' name='wfr_supp' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='suppressedWF'>Suppressed</label>
-								<input id='unsuppressedWF' type='radio' name='wfr_supp' value='unsuppressed'></input>
+								<input id='unsuppressedWF' type='radio' name='wfr_supp' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='unsuppressedWF'>Unsuppressed</label>
 							</li>
 							<li>
 								<label>Pretrigger:</label>
 								<input id='wfr_pret' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Samples:</label>
 								<input id='wfr_smpl' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Decimation:</label>
 								<input id='wfr_dec' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Filter WF:</label>
-								<input id='enableWFfilter' type='radio' name='wfr_off' value='enabled' checked></input>
+								<input id='enableWFfilter' type='radio' name='wfr_off' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='enableWFfilter'>Enabled</label>
-								<input id='disableWFfilter' type='radio' name='wfr_off' value='disabled'></input>
+								<input id='disableWFfilter' type='radio' name='wfr_off' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='disableWFfilter'>Disabled</label>
 							</li>
 						</ul>
@@ -237,36 +237,36 @@
 						<h3 class='sectionHead' onclick='toggleSection.bind(this, "simulation")()'>&#9654 Simulation Pulse</h3>
 						<ul>
 							<li>
-								<input id='enableSim' type='radio' name='sim_ena' value='enabled' checked></input>
+								<input id='enableSim' type='radio' name='sim_ena' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='enableSim'>Enabled</label>
-								<input id='disableSim' type='radio' name='sim_ena' value='disabled'></input>
+								<input id='disableSim' type='radio' name='sim_ena' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='disableSim'>Disabled</label>
 							</li>
 							<li>
 								<label>Pulse Height:</label>
 								<input id='sim_phgt' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Risetime:</label>
 								<input id='sim_rise' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Falltime:</label>
 								<input id='sim_fall' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Rate:</label>
 								<input id='sim_rate' type='number' step='any' onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 							<li>
 								<label>Period:</label>
-								<input id='periodRand' type='radio' name='sim_rand' value='random' checked></input>
+								<input id='periodRand' type='radio' name='sim_rand' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='periodRand'>Random</label>
-								<input id='periodFix' type='radio' name='sim_rand' value='fixed'></input>
+								<input id='periodFix' type='radio' name='sim_rand' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='periodFix'>Fixed</label>
 							</li>
 						</ul>
@@ -278,12 +278,12 @@
 							<li>
 								<label>Fixed Deadtime:</label>
 								<input id='fix_dead' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label>samples</label>
 							</li>
 							<li>
 								<label>Detector Type:</label>
 								<input id='det_type' type='number' step=1 onchange='updateADC.bind(this)()'></input>
-								<label>units</label>
+								<label></label>
 							</li>
 						</ul>
 					</div>
@@ -355,7 +355,7 @@
 				window.onkeyup = keypress;
 
 //write test///////////////////////////////////////////////////
-
+/*
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2
 	,	var_id = 7
@@ -366,7 +366,7 @@
 	
 	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
 	MSCB_WriteVar( url, addr, var_id, data )
-
+*/
 			});
 		</script>
 

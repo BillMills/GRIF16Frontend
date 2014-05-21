@@ -58,7 +58,6 @@ function fetchParameters(){
 }
 
 //insert the parameters from channel n into the control sidebar
-//TBD: booleans are being posted as floats, not going to touch them until we discuss why...
 function updateParameters(n){
 
 	var numberID = [	'a_dcofst', 
@@ -69,11 +68,25 @@ function updateParameters(n){
 						'sim_phgt', 'sim_rise', 'sim_fall', 'sim_rate',
 						'fix_dead', 'det_type'
 		],
+		radioName = [	'a_off',
+						'a_pol',
+						'a_fgain',
+						't_off',
+						'wfr_supp',
+						'wfr_off',
+						'sim_ena',
+						'sim_rand'
+		],
 		i;
 
 	//all number inputs have id == data key name
 	for(i=0; i<numberID.length; i++)
 		document.getElementById(numberID[i]).value = window.ADCparameters[n][numberID[i]]['d'];
+
+	//all radio inputs have name == data key name
+	for(i=0; i<radioName.length; i++){
+		document.querySelectorAll('input[name = "'+radioName[i]+'"][value = '+window.ADCparameters[n][radioName[i]]['d']+']')[0].checked = true;	
+	}
 
 }
 
@@ -136,18 +149,24 @@ function fetchADC(){
 function updateADC(){
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2 + window.currentADC
-	,	var_id = window.ADCparameters[window.currentADC][this.id]['id']
-	,	data = new DataView(new ArrayBuffer(window.ADCparameters[window.currentADC][this.id]['w']));
-					
-    //data.setFloat32(0, this.value);
-    if(window.typeLookup[this.id] == 'int')
-    	data.setInt32(0, parseInt(this.value,10) );
-    else if(window.typeLookup[this.id] == 'float')
-    	data.setFloat32(0, parseFloat(this.value) );
-    else if(window.typeLookup[this.id] == 'bool')
-    	return;//WAT how bool
+	,	var_id, var_name, data;
 
-	
-	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
+	//number inputs have the variable name as their id, radios as their name:
+	if(window.ADCparameters[window.currentADC][this.id])
+		var_name = this.id;
+	else
+		var_name = this.name;
+
+	var_id = window.ADCparameters[window.currentADC][var_name]['id'];
+	data = new DataView(new ArrayBuffer(window.ADCparameters[window.currentADC][var_name]['w']));
+
+    if(window.typeLookup[var_name] == 'int')
+    	data.setInt32(0, parseInt(this.value,10) );
+    else if(window.typeLookup[var_name] == 'float')
+    	data.setFloat32(0, parseFloat(this.value) );
+    else if(window.typeLookup[var_name] == 'bool')
+    	data.setInt8(0, (this.value == 'true')? 1 : 0);
+
+	//console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
 	MSCB_WriteVar( url, addr, var_id, data )
 }
