@@ -62,7 +62,7 @@
 						<ul>
 							<li>
 								<label>DC Offset:</label>
-								<input id='a_dcofst' type='number' step='any' onchange='updateADC.bind(this)()'></input>
+								<input id='a_dcofst' type='number' step='any' oninput='updateADC.bind(this)()'></input>
 								<label>mV</label>
 							</li>
 							<li>
@@ -353,6 +353,7 @@
 				fetchADC();
 
 				window.onkeyup = keypress;
+
 
 //write test///////////////////////////////////////////////////
 /*
