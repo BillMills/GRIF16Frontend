@@ -141,7 +141,7 @@ function fetchADC(){
 
 	};
 
-	xmlhttp.open("GET", "http://mscb500.triumf.ca/fifo_raw?ch="+(2+window.currentADC), true);
+	xmlhttp.open("GET", "http://mscb500.triumf.ca/fifo_raw?ch="+window.currentADC, true);
 	xmlhttp.responseType = "arraybuffer";
 	xmlhttp.send(null);
 }
