@@ -60,7 +60,7 @@ function fetchParameters(){
 //insert the parameters from channel n into the control sidebar
 function updateParameters(n){
 
-	var numberID = [	'a_dcofst', 
+	var numberID = [	'a_dcofst', 'a_trim',
 						't_hthres', 't_thres', 't_diff', 't_int', 't_delay', 't_polcor', 't_blrctl', 
 						'p_int', 'p_diff', 'p_delay', 'p_polec1', 'p_polec2', 'p_bsr', 'p_gain', 'p_pactrl',
 						'cfd_dly', 'cfd_frac',
@@ -149,7 +149,7 @@ function fetchADC(){
 function updateADC(){
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2 + window.currentADC
-	,	var_id, var_name, data;
+	,	var_id, var_name, width, data;
 
 	//number inputs have the variable name as their id, radios as their name:
 	if(window.ADCparameters[window.currentADC][this.id])
@@ -158,11 +158,15 @@ function updateADC(){
 		var_name = this.name;
 
 	var_id = window.ADCparameters[window.currentADC][var_name]['id'];
-	data = new DataView(new ArrayBuffer(window.ADCparameters[window.currentADC][var_name]['w']));
+	width = window.ADCparameters[window.currentADC][var_name]['w'];
+	data = new DataView(new ArrayBuffer(width));
 
-    if(window.typeLookup[var_name] == 'int')
-    	data.setInt16(0, parseInt(this.value,10) );
-    else if(window.typeLookup[var_name] == 'float')
+    if(window.typeLookup[var_name] == 'int'){
+    	if(width == 1)
+    		data.setInt8(0, parseInt(this.value,10) );
+    	if(width == 2)
+	    	data.setInt16(0, parseInt(this.value,10) );
+    } else if(window.typeLookup[var_name] == 'float')
     	data.setFloat32(0, parseFloat(this.value) );
     else if(window.typeLookup[var_name] == 'bool')
     	data.setInt8(0, (this.value == 'true')? 1 : 0);

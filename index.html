@@ -73,6 +73,11 @@
 								<label for='DCdisable'>Disabled</label>
 							</li>
 							<li>
+								<label>Trim:</label>
+								<input id='a_trim' type='number' step=1 oninput='updateADC.bind(this)()'></input>
+								<label></label>
+							</li>
+							<li>
 								<label>Polarity:</label>
 								<input id='posPol' type='radio' name='a_pol' value=true checked onchange='updateADC.bind(this)()'></input>
 								<label for='posPol'>Positive</label>
@@ -312,7 +317,7 @@
 					'a_off': 'bool',
 					'a_fgain': 'bool',
 					'a_dcofst': 'int',
-					//'a_trim': 'int',
+					'a_trim': 'int',
 					//'a_status': 'int',
 					'ch_en': 'int',
 					'ch_aa': 'int',
