@@ -126,6 +126,7 @@ function fetchADC(){
 		
 		for(i=0; i<dv.byteLength/2; i++){
 			CSV += i*10 + ',' + dv.getInt16(2*i)*0.1220703125 + '\n';
+
 		}
         
 		if(window.dygraph){
@@ -223,6 +224,8 @@ function populateStatusPane(){
     		document.getElementById(key).innerHTML = content;
     		i++;
     	}
+
+    	setTimeout(populateStatusPane, 10000)
 
 	};
 
