@@ -174,3 +174,86 @@ function updateADC(){
 	//console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
 	MSCB_WriteVar( url, addr, var_id, data )
 }
+
+function populateStatusPane(){
+	var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function(){
+    	var key, data, i = 0, time
+    		content,
+    		titles = [
+    			'Control Bits: ',
+    			'Revision: ',
+    			'Serial: ',
+    			'FPGA Temperature: ',
+    			'Clock Cleaner Locked: ',
+    			'Clock Cleaner Frequency: ',
+    			'Hardware / Software Match: ',
+    			'Hardware ID: ',
+    			'Hardware Timestamp: ',
+    			'Software ID: ',
+    			'Software Timestamp: ',
+    			'Uptime: ',
+    			'dac_ch: ',
+    			'Reference Clock: ',
+    			'Enabled Channels: ',
+    			'Enabled ADCs: '
+    		]
+
+    	if(this.readyState != 4) return;
+
+    	data = JSON.parse(this.responseText);
+
+    	for(key in data){
+    		content = titles[i] + data[key].d;
+    		if(i==3)
+    			content += ' C'
+    		if(i==7 || i==9)
+    			content = titles[i] + '0x' + parseInt(data[key].d, 10).toString(16);
+    		if(i==8 || i==10){
+    			time = new Date(parseInt(data[key].d, 10)*1000);
+    			content = titles[i] + time.toString();
+    		}
+    		if(i==11){
+    			time = parseInt(data[key].d, 10);
+    			content = titles[i] + chewUptime(time);
+    		}
+
+
+    		document.getElementById(key).innerHTML = content;
+    		i++;
+    	}
+
+	};
+
+	xmlhttp.open("GET", "http://mscb500.triumf.ca/mscb?node=1", true);
+	xmlhttp.responseType = "application/json";
+	xmlhttp.send(null);	
+}
+
+function chewUptime(s){
+	var time = s,
+		elapsed = '';
+
+	if(time > 24*3600){
+		elapsed += Math.floor(time/(24*3600)) + ' d'
+		time = time % (24*3600);
+	}
+	if(time > 3600){
+		if(elapsed != '') elapsed += ', '
+		elapsed += Math.floor(time/(3600)) + ' h'
+		time = time % (3600);
+	}
+	if(time > 60){
+		if(elapsed != '') elapsed += ', '
+		elapsed += Math.floor(time/(60)) + ' min'
+		time = time % (60);
+	}
+	if(time > 0){
+		if(elapsed != '') elapsed += ', '
+		elapsed += Math.floor(time) + ' s'
+	}
+
+	return elapsed;
+
+}

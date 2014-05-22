@@ -57,6 +57,30 @@
 				<div id='plotTarget'></div>
 
 				<div id='control'>
+
+					<div id='ADCstatusPane' class='collapse'>
+						<h3 class='sectionHead' onclick='toggleSection.bind(this, "ADCstatusPane")()'>&#9654 MSCB Node Info</h3>
+
+						<ul>
+							<li id='ctrl'></li>
+							<li id='rev'></li>
+							<li id='serial'></li>
+							<li id='cpu_temp'></li>
+							<li id='cc_lock'></li>
+							<li id='cc_freq'></li>
+							<li id='hw_sw_m'></li>
+							<li id='hw_id'></li>
+							<li id='hw_time'></li>
+							<li id='sw_id'></li>
+							<li id='sw_time'></li>
+							<li id='uptime'></li>
+							<li id='dac_ch'></li>
+							<li id='ref_clk'></li>
+							<li id='ch_en'></li>
+							<li id='ch_aa'></li>
+						</ul>
+					</div>
+					
 					<div id='ADC' class='collapse'>
 						<h3 class='sectionHead' onclick='toggleSection.bind(this, "ADC")()'>&#9654 ADC Control</h3>
 						<ul>
@@ -303,6 +327,7 @@
 				</div>
 			</div>
 
+
 			<div id='push'></div>
 		</div>
 
@@ -356,6 +381,7 @@
 
 				cycleTo(0);
 				fetchADC();
+				populateStatusPane()
 
 				window.onkeyup = keypress;
 
