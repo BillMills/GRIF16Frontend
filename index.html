@@ -85,9 +85,9 @@
 						<h3 class='sectionHead' onclick='toggleSection.bind(this, "ADC")()'>&#9654 ADC Control</h3>
 						<ul>
 							<li>
-								<label>DC Offset:</label>
-								<input id='a_dcofst' type='number' step='any' oninput='updateADC.bind(this)()'></input>
-								<label>mV</label>
+								<p>DC Offset:</p>
+								<input id='a_dcofst' type='range' step=1 min=0 max=4095 oninput='updateADC.bind(this)()'></input>
+								<label id='dcofstLabel'>mV</label>
 							</li>
 							<li>
 								<label>ADC Chan:</label>
@@ -107,13 +107,6 @@
 								<label for='posPol'>Positive</label>
 								<input id='negPol' type='radio' name='a_pol' value=false onchange='updateADC.bind(this)()'></input>
 								<label for='negPol'>Negative</label>
-							</li>
-							<li>
-								<label>Gain Setting:</label>
-								<input id='gainA' type='radio' name='a_fgain' value=true checked onchange='updateADC.bind(this)()'></input>
-								<label for='gainA'>1 V</label>
-								<input id='gainB' type='radio' name='a_fgain' value=false onchange='updateADC.bind(this)()'></input>
-								<label for='gainB'>4 V</label>
 							</li>
 						</ul>
 					</div>
@@ -321,9 +314,9 @@
 
 				<div id='plotControl'>
 					<label>y min [mV]</label>
-					<input id='yMin' type='number' min=-4000 max=4000 value=-4000 step=1></input>
+					<input id='yMin' type='number' min=-1000 max=1000 value=-1000 step=1></input>
 					<label>y max [mV]</label>
-					<input id='yMax' type='number' min=-4000 max=4000 value=4000 step=1></input>
+					<input id='yMax' type='number' min=-1000 max=1000 value=1000 step=1></input>
 				</div>
 			</div>
 
@@ -337,68 +330,12 @@
 			document.addEventListener('DOMComponentsLoaded', function(){
 				window.ADCparameters = [];
 
-				window.typeLookup = {
-					'a_pol': 'bool',
-					'a_off': 'bool',
-					'a_fgain': 'bool',
-					'a_dcofst': 'int',
-					'a_trim': 'int',
-					//'a_status': 'int',
-					'ch_en': 'int',
-					'ch_aa': 'int',
-					't_hthres': 'float',
-					't_thres': 'float',
-					't_diff': 'int',
-					't_int': 'int',
-					't_delay': 'int',
-					't_polcor': 'float',
-					't_blrctl': 'float',
-					't_off': 'bool',
-					'p_int': 'int',
-					'p_diff': 'int',
-					'p_delay': 'int',
-					'p_polec1': 'float',
-					'p_polec2': 'float',
-					'p_bsr': 'float',
-					'p_gain': 'float',
-					'p_pactrl': 'int',
-					'cfd_dly': 'int',
-					'cfd_frac': 'float',
-					'wfr_pret': 'int',
-					'wfr_smpl': 'int',
-					'wfr_dec': 'int',
-					'wfr_supp': 'bool',
-					'wfr_off': 'bool',
-					'sim_ena': 'bool',
-					'sim_phgt': 'float',
-					'sim_rise': 'float',
-					'sim_fall': 'float',
-					'sim_rate': 'float',
-					'sim_rand': 'bool',
-					'fix_dead': 'int',
-					'det_type': 'int'
-				}
-
 				cycleTo(0);
 				fetchADC();
 				populateStatusPane()
 
 				window.onkeyup = keypress;
 
-
-//write test///////////////////////////////////////////////////
-/*
-	var url = 'http://mscb500.triumf.ca/mscb_rx'
-	,	addr = 2
-	,	var_id = 7
-	,	data = new DataView(new ArrayBuffer(4));
-					
-    data.setFloat32(0, 7);
-
-	
-	console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
-	MSCB_WriteVar( url, addr, var_id, data )
-*/
 			});
 		</script>
 

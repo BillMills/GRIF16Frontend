@@ -70,7 +70,6 @@ function updateParameters(n){
 		],
 		radioName = [	'a_off',
 						'a_pol',
-						'a_fgain',
 						't_off',
 						'wfr_supp',
 						'wfr_off',
@@ -82,11 +81,13 @@ function updateParameters(n){
 	//all number inputs have id == data key name
 	for(i=0; i<numberID.length; i++)
 		document.getElementById(numberID[i]).value = window.ADCparameters[n][numberID[i]]['d'];
-
 	//all radio inputs have name == data key name
 	for(i=0; i<radioName.length; i++){
 		document.querySelectorAll('input[name = "'+radioName[i]+'"][value = '+window.ADCparameters[n][radioName[i]]['d']+']')[0].checked = true;	
 	}
+
+	//special label for the DC offset slider
+	document.getElementById('dcofstLabel').innerHTML = (document.getElementById('a_dcofst').value - 2048)*0.6714 + ' mV';
 
 }
 
@@ -124,9 +125,8 @@ function fetchADC(){
 
 		dv = new DataView(this.response);
 		
-		for(i=0; i<dv.byteLength/2; i++){
-			CSV += i*10 + ',' + dv.getInt16(2*i)*0.1220703125 + '\n';
-
+		for(i=0; i<dv.byteLength/2; i+=2){
+			CSV += i*5 + ',' + dv.getInt16(i, true)*0.1220703125 + '\n';
 		}
         
 		if(window.dygraph){
@@ -150,7 +150,7 @@ function fetchADC(){
 function updateADC(){
 	var url = 'http://mscb500.triumf.ca/mscb_rx'
 	,	addr = 2 + window.currentADC
-	,	var_id, var_name, width, data;
+	,	var_id, var_name, width, data, flag, unit, value;
 
 	//number inputs have the variable name as their id, radios as their name:
 	if(window.ADCparameters[window.currentADC][this.id])
@@ -160,18 +160,43 @@ function updateADC(){
 
 	var_id = window.ADCparameters[window.currentADC][var_name]['id'];
 	width = window.ADCparameters[window.currentADC][var_name]['w'];
+	flag = window.ADCparameters[window.currentADC][var_name]['f'];
+	unit = window.ADCparameters[window.currentADC][var_name]['u'];
 	data = new DataView(new ArrayBuffer(width));
+	value = this.value;
+	if(var_name == 'a_dcofst'){
+		document.getElementById('dcofstLabel').innerHTML = ((this.value - 2048)*0.6714).toFixed(4) + ' mV';
+	}
 
-    if(window.typeLookup[var_name] == 'int'){
-    	if(width == 1)
-    		data.setInt8(0, parseInt(this.value,10) );
-    	if(width == 2)
-	    	data.setInt16(0, parseInt(this.value,10) );
-    } else if(window.typeLookup[var_name] == 'float')
-    	data.setFloat32(0, parseFloat(this.value) );
-    else if(window.typeLookup[var_name] == 'bool')
-    	data.setInt8(0, (this.value == 'true')? 1 : 0);
+	if(unit == MSCB_DEFINES['UNIT_BOOLEAN']){
+		data.setInt8(0, (value == 'true')? 1 : 0);
+	} else {
 
+		if(flag & MSCB_DEFINES['MSCBF_FLOAT'])
+			data.setFloat32(0, parseFloat(this.value) );
+		else if(flag & MSCB_DEFINES['MSCBF_SIGNED']){
+			if(width==1){
+				data.setInt8(0, parseInt(value,10) );
+			} else if(width==2){
+				data.setInt16(0, parseInt(value,10) );
+			} else if(width==4){
+				data.setInt32(0, parseInt(value,10) );
+			} else{
+				//NOPE
+			}
+		} else {
+			if(width==1){
+				data.setUint8(0, parseInt(value,10) );
+			} else if(width==2){
+				data.setUint16(0, parseInt(value,10) );
+			} else if(width==4){
+				data.setUint32(0, parseInt(value,10) );
+			} else{
+				//NOPE
+			}		
+		}
+	}
+    	
 	//console.log('trying MSCB_WriteVar('+url+', '+addr+', '+var_id+', '+data+')' )
 	MSCB_WriteVar( url, addr, var_id, data )
 }
