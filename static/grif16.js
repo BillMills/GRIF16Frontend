@@ -137,8 +137,8 @@ function fetchADC(){
 		}
 
         //refetch
-        //window.fetch = setTimeout(fetchADC.bind(null), 500);
-        fetchADC()
+        window.fetch = setTimeout(fetchADC, 50);
+        //fetchADC()
 
 	};
 
