@@ -53,7 +53,7 @@ function fetchParameters(){
     }
     //fire async
     xmlhttp.overrideMimeType('application/json');
-    xmlhttp.open('GET', 'http://mscb500.triumf.ca/mscb?node='+(window.currentADC+2));
+    xmlhttp.open('GET', '/mscb?node='+(window.currentADC+2));
     xmlhttp.send();
 }
 
@@ -142,13 +142,13 @@ function fetchADC(){
 
 	};
 
-	xmlhttp.open("GET", "http://mscb500.triumf.ca/fifo_raw?ch="+window.currentADC, true);
+	xmlhttp.open("GET", "/fifo_raw?ch="+window.currentADC, true);
 	xmlhttp.responseType = "arraybuffer";
 	xmlhttp.send(null);
 }
 
 function updateADC(){
-	var url = 'http://mscb500.triumf.ca/mscb_rx'
+	var url = '/mscb_rx'
 	,	addr = 2 + window.currentADC
 	,	var_id, var_name, width, data, flag, unit, value;
 
@@ -254,7 +254,7 @@ function populateStatusPane(){
 
 	};
 
-	xmlhttp.open("GET", "http://mscb500.triumf.ca/mscb?node=1", true);
+	xmlhttp.open("GET", "/mscb?node=1", true);
 	xmlhttp.responseType = "application/json";
 	xmlhttp.send(null);	
 }
